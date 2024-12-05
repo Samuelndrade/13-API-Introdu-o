@@ -12,3 +12,8 @@ app.get("/", (req, res) => {        // Cria a rota da raiz do projeto
 app.listen(port, () => {            // Um socket para "escutar" as requisições
   console.log(`Serviço escutando na porta:  ${port}`);
 });
+import { selectUsuarios, selectUsuario } from "./bd.js";
+app.use(express.json());
+import { insertUsuario } from "./bd.js";
+import { deleteUsuario } from "./bd.js";
+import { updateUsuario } from "./bd.js";
