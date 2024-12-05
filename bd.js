@@ -9,7 +9,7 @@ async function selectUsuario(id) {
   }
 //bd.js
 export { selectUsuarios, selectUsuario };
-  async function insertUsuario(data) {
+async function insertUsuario(data) {
     const client = await connect();
     const query = "INSERT INTO usuario (nome, senha, email) VALUES ($1, $2, $3)";
     const usuario = [data.nome, data.senha, data.email];
@@ -18,8 +18,8 @@ export { selectUsuarios, selectUsuario };
   }
   
   // Exporte a função
-  export { selectUsuarios, selectUsuario, insertUsuario };
-  async function deleteUsuario(id) {
+export { selectUsuarios, selectUsuario, insertUsuario };
+async function deleteUsuario(id) {
   const client = await connect();
   const query = "DELETE FROM usuario WHERE id = $1";
   await client.query(query, [id]);
