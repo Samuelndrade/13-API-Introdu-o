@@ -36,8 +36,8 @@ async function deleteUsuario(id) {
   }
   
   // Exporte a função
-  export { selectUsuarios, selectUsuario, insertUsuario, deleteUsuario };
-  async function updateUsuario(id, data) {
+export { selectUsuarios, selectUsuario, insertUsuario, deleteUsuario };
+async function updateUsuario(id, data) {
     const client = await connect();
     const query = "UPDATE usuario SET nome = $1, email = $2, senha = $3 WHERE id = $4";
     const usuario = [data.nome, data.email, data.senha, id];
@@ -46,5 +46,21 @@ async function deleteUsuario(id) {
   }
   
   // Exporte a função
-  export { selectUsuarios, selectUsuario, insertUsuario, deleteUsuario, updateUsuario };
-  
+export { selectUsuarios, selectUsuario, insertUsuario, deleteUsuario, updateUsuario };
+//bd.js
+async function deleteUsuario(id) {
+    const client = await connect();
+    const query = "DELETE FROM usuario WHERE id = $1";
+    await client.query(query, [id]);
+    client.release();
+  }
+//bd.js
+//bd.js
+async function updateUsuario(id, data) {
+    const client = await connect();
+    const query = "UPDATE usuario SET nome = $1, email = $2, senha = $3 WHERE id = $4";
+    const usuario = [data.nome, data.email, data.senha, id];
+    await client.query(query, usuario);
+    client.release();
+  }
+//bd.js
