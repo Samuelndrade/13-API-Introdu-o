@@ -17,3 +17,14 @@ app.use(express.json());
 import { insertUsuario } from "./bd.js";
 import { deleteUsuario } from "./bd.js";
 import { updateUsuario } from "./bd.js";
+//index.js
+app.get("/usuario/:id", async (req, res) => {
+  console.log("Rota GET /usuario/# solicitada");
+  try {
+    const usuario = await selectUsuario(req.params.id);
+    if (usuario.length > 0) res.json(usuario);
+    else res.status(404).json({ message: "Usuário não encontrado!" });
+  } catch (error) {
+    res.status(error.status || 500).json({ message: error.message || "Erro!" });
+  }
+});
